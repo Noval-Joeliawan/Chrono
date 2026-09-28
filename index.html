@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="id">
+ <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0f172a" />
+    <title>Chrono — Every Moment, On Time.</title>
+    <link rel="stylesheet" href="style.css" />
+ </head>
+ <body>
+    <header class="app-header">
+      <div>
+        <h1>Chrono</h1>
+        <p>Every Moment, On Time.</p>
+      </div>
+    </header>
+
+    <main>
+      <!-- ============ HALAMAN JAM ============ -->
+      <section id="halaman-jam" class="halaman aktif">
+        <div class="kartu kartu-jam">
+          <div class="jam-besar" id="jam-utama">00:00:00</div>
+          <div class="jam-tanggal" id="jam-tanggal">Memuat tanggal…</div>
+          <div class="jam-zona" id="jam-zona">Zona waktu lokal</div>
+        </div>
+      </section>
+
+      <!-- ============ HALAMAN ALARM ============ -->
+      <section id="halaman-alarm" class="halaman">
+        <div class="kartu">
+          <h2>Alarm</h2>
+
+          <form id="form-alarm" class="form-alarm">
+            <div class="baris-input">
+              <label>
+                Nama
+                <input type="text" id="alarm-nama" placeholder="Nama alarm" maxlength="30" />
+              </label>
+              <label>
+                Waktu
+                <input type="time" id="alarm-waktu" required />
+              </label>
+            </div>
+            <button type="submit" class="btn btn-biru">+ Tambah Alarm</button>
+          </form>
+
+          <ul id="daftar-alarm" class="daftar"></ul>
+          <p class="kosong" id="alarm-kosong">Belum ada alarm. Tambahkan satu di atas.</p>
+        </div>
+      </section>
+
+      <!-- ============ HALAMAN JAM DUNIA ============ -->
+      <section id="halaman-dunia" class="halaman">
+        <div class="kartu">
+          <h2>Jam Dunia</h2>
+
+          <div class="baris-cari">
+            <input type="text" id="cari-kota" placeholder="Cari kota…" autocomplete="off" />
+            <select id="pilih-kota"></select>
+            <button id="btn-tambah-kota" class="btn btn-biru">Tambah</button>
+          </div>
+
+          <ul id="daftar-kota" class="daftar"></ul>
+          <p class="kosong" id="kota-kosong">Belum ada kota. Tambahkan dari daftar di atas.</p>
+        </div>
+      </section>
+
+      <!-- ============ HALAMAN STOPWATCH ============ -->
+      <section id="halaman-stopwatch" class="halaman">
+        <div class="kartu kartu-jam">
+          <div class="timer">
+            <span class="menit">00</span><span class="pembatas">:</span
+            ><span class="detik">00</span><span class="pembatas">.</span
+            ><span class="milidetik">00</span>
+          </div>
+          <div class="tombol-container">
+            <button class="mulai" onclick="mulaiStopwatch()">Mulai</button>
+            <button class="stop" onclick="stopStopwatch()">Stop</button>
+            <button class="lanjut" onclick="lanjutStopwatch()">Lanjut</button>
+            <button class="reset" onclick="resetStopwatch()">Reset</button>
+            <button class="lap" onclick="catatLap()">Lap</button>
+          </div>
+          <ol id="daftar-lap" class="daftar-lap"></ol>
+        </div>
+      </section>
+
+      <!-- ============ HALAMAN TIMER ============ -->
+      <section id="halaman-timer" class="halaman">
+        <div class="kartu kartu-jam">
+          <div class="timer" id="timer-tampilan">00:00:00</div>
+
+          <div class="baris-input input-timer">
+            <label>Jam <input type="number" id="timer-jam" min="0" max="23" value="0" /></label>
+            <label>Menit <input type="number" id="timer-menit" min="0" max="59" value="5" /></label>
+            <label>Detik <input type="number" id="timer-detik" min="0" max="59" value="0" /></label>
+          </div>
+
+          <div class="tombol-container">
+            <button class="mulai" onclick="mulaiTimer()">Mulai</button>
+            <button class="stop" onclick="pauseTimer()">Pause</button>
+            <button class="lanjut" onclick="lanjutTimer()">Lanjut</button>
+            <button class="reset" onclick="resetTimer()">Reset</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Navigasi bawah (gaya aplikasi Jam di HP) -->
+    <nav class="navigasi">
+      <button data-halaman="jam" class="aktif">🕐<span>Jam</span></button>
+      <button data-halaman="alarm">⏰<span>Alarm</span></button>
+      <button data-halaman="dunia">🌎<span>Dunia</span></button>
+      <button data-halaman="stopwatch">⏱️<span>Stopwatch</span></button>
+      <button data-halaman="timer">⌛<span>Timer</span></button>
+    </nav>
+
+    <!-- Modal notifikasi (dipakai alarm & timer) -->
+    <div id="modal" class="modal" hidden>
+      <div class="modal-kotak">
+        <div class="modal-ikon" id="modal-ikon">⏰</div>
+        <h2 id="modal-judul">Alarm berbunyi!</h2>
+        <p id="modal-pesan">—</p>
+        <button id="modal-tutup" class="btn btn-merah">Hentikan</button>
+      </div>
+    </div>
+
+    <script src="js/stopwatch.js"></script>
+    <script src="js/timer.js"></script>
+    <script src="js/alarm.js"></script>
+    <script src="js/world-clock.js"></script>
+    <script src="js/clock.js"></script>
+    <script src="js/app.js"></script>
+ </body>
+</html>

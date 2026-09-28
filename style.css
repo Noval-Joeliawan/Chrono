@@ -1,0 +1,529 @@
+/* =====================================================
+   CHRONO — Every Moment, On Time.
+   Tema: dark mode, aksen biru muda (#38bdf8)
+   ===================================================== */
+
+:root {
+  --bg: #0f172a;
+  --bg-2: #1e293b;
+  --kartu: rgba(255, 255, 255, 0.05);
+  --garis: rgba(255, 255, 255, 0.1);
+  --teks: #f8fafc;
+  --teks-redup: #94a3b8;
+  --aksen: #38bdf8;
+  --hijau: #10b981;
+  --kuning: #f59e0b;
+  --merah: #ef4444;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: linear-gradient(135deg, var(--bg), var(--bg-2));
+  min-height: 100vh;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--teks);
+  padding-bottom: 90px; /* ruang untuk navigasi bawah */
+  overflow-x: hidden;
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  padding: 18px 20px 4px;
+  text-align: center;
+}
+
+.app-header h1 {
+  font-size: 1.6rem;
+  letter-spacing: 1px;
+}
+
+.app-header p {
+  color: var(--aksen);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ---------- Halaman ---------- */
+main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 12px 14px;
+}
+
+.halaman {
+  display: none;
+}
+
+.halaman.aktif {
+  display: block;
+  animation: muncul 0.25s ease;
+}
+
+@keyframes muncul {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Kartu ---------- */
+.kartu {
+  background: var(--kartu);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--garis);
+  border-radius: 24px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  padding: 22px;
+  margin-bottom: 16px;
+}
+
+.kartu h2 {
+  font-size: 1.15rem;
+  margin-bottom: 14px;
+}
+
+.kartu-jam {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+/* ---------- Jam utama ---------- */
+.jam-besar {
+  font-size: clamp(2.6rem, 12vw, 4.5rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 2px;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.25);
+}
+
+.jam-tanggal {
+  margin-top: 10px;
+  font-size: 1rem;
+  color: var(--teks);
+}
+
+.jam-zona {
+  margin-top: 6px;
+  font-size: 0.85rem;
+  color: var(--teks-redup);
+}
+
+/* ---------- Tampilan angka (stopwatch / timer) ---------- */
+.timer {
+  font-size: clamp(2.6rem, 12vw, 4.5rem);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 2px;
+  margin-bottom: 24px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.pembatas {
+  color: #64748b;
+}
+
+.milidetik {
+  color: var(--aksen);
+}
+
+.timer-selesai {
+  animation: kedip 0.5s ease infinite alternate;
+  color: var(--aksen);
+}
+
+@keyframes kedip {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.35;
+  }
+}
+
+/* ---------- Tombol ---------- */
+button {
+  font-family: inherit;
+  border: none;
+  cursor: pointer;
+  color: #fff;
+}
+
+.tombol-container {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.tombol-container button {
+  flex: 1 1 30%;
+  min-width: 90px;
+  padding: 15px 12px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.btn {
+  padding: 12px 18px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 14px;
+  transition: all 0.2s ease;
+}
+
+.mulai,
+.btn-hijau {
+  background-color: var(--hijau);
+}
+.stop,
+.btn-kuning {
+  background-color: var(--kuning);
+}
+.reset,
+.btn-merah {
+  background-color: var(--merah);
+}
+.lanjut,
+.lap,
+.btn-biru {
+  background-color: var(--aksen);
+  color: #0f172a;
+}
+
+.mulai:hover,
+.btn-hijau:hover {
+  background-color: #059669;
+}
+.stop:hover,
+.btn-kuning:hover {
+  background-color: #d97706;
+}
+.reset:hover,
+.btn-merah:hover {
+  background-color: #dc2626;
+}
+.lanjut:hover,
+.lap:hover,
+.btn-biru:hover {
+  background-color: #0ea5e9;
+}
+
+/* ---------- Form ---------- */
+.form-alarm {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.baris-input {
+  display: flex;
+  gap: 10px;
+}
+
+.baris-input label {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.8rem;
+  color: var(--teks-redup);
+}
+
+input,
+select {
+  font-family: inherit;
+  width: 100%;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid var(--garis);
+  background: rgba(255, 255, 255, 0.07);
+  color: var(--teks);
+  font-size: 0.95rem;
+}
+
+input:focus,
+select:focus {
+  outline: 2px solid var(--aksen);
+  outline-offset: 1px;
+}
+
+.input-timer {
+  width: 100%; /* penuhi kartu (kartu-jam punya align-items: center) */
+  margin-bottom: 24px;
+}
+
+.input-timer label {
+  flex: 1;
+  min-width: 0; /* agar label menyusut rapi di layar sempit */
+  text-align: center;
+}
+
+.input-timer input {
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+/* Hilangkan tombol panah spin bawaan agar lebih bersih di desktop */
+.input-timer input::-webkit-outer-spin-button,
+.input-timer input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.input-timer input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* ---------- Daftar (alarm / kota) ---------- */
+.daftar {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.daftar li {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--garis);
+  border-radius: 14px;
+  padding: 12px 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.daftar .info {
+  flex: 1;
+  min-width: 120px;
+}
+
+.daftar .info strong {
+  display: block;
+  font-size: 1rem;
+}
+
+.daftar .info small {
+  color: var(--teks-redup);
+  font-size: 0.78rem;
+}
+
+.daftar .waktu-kota {
+  font-size: 1.15rem;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.daftar .kecil {
+  font-size: 0.8rem;
+  padding: 8px 12px;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+.btn-nonaktif {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--teks-redup);
+}
+
+.status {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.status.on {
+  color: var(--hijau);
+}
+.status.off {
+  color: var(--teks-redup);
+}
+
+.kosong {
+  text-align: center;
+  color: var(--teks-redup);
+  font-size: 0.85rem;
+  padding: 10px 0;
+}
+
+/* ---------- Baris pencarian jam dunia ---------- */
+.baris-cari {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.baris-cari input {
+  flex: 2 1 140px;
+}
+
+.baris-cari select {
+  flex: 2 1 150px;
+}
+
+.baris-cari .btn {
+  flex: 1 1 80px;
+}
+
+/* ---------- Daftar lap ---------- */
+.daftar-lap {
+  list-style: none;
+  width: 100%;
+  margin-top: 20px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.daftar-lap li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--garis);
+  font-variant-numeric: tabular-nums;
+  font-size: 0.95rem;
+}
+
+.daftar-lap li span:first-child {
+  color: var(--teks-redup);
+}
+
+/* ---------- Navigasi bawah ---------- */
+.navigasi {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  background: rgba(15, 23, 42, 0.9);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-top: 1px solid var(--garis);
+  padding: 6px 4px calc(6px + env(safe-area-inset-bottom, 0px));
+  z-index: 10;
+}
+
+.navigasi button {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  background: none;
+  padding: 6px 2px;
+  font-size: 1.2rem;
+  border-radius: 12px;
+  transition: background 0.2s ease;
+}
+
+.navigasi button span {
+  font-size: 0.68rem;
+  color: var(--teks-redup);
+}
+
+.navigasi button.aktif {
+  background: rgba(56, 189, 248, 0.15);
+}
+
+.navigasi button.aktif span {
+  color: var(--aksen);
+  font-weight: 700;
+}
+
+/* ---------- Modal ---------- */
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 50;
+  padding: 20px;
+}
+
+.modal[hidden] {
+  display: none;
+}
+
+.modal-kotak {
+  background: var(--bg-2);
+  border: 1px solid var(--garis);
+  border-radius: 24px;
+  padding: 30px;
+  text-align: center;
+  max-width: 360px;
+  width: 100%;
+  animation: muncul 0.25s ease;
+}
+
+.modal-ikon {
+  font-size: 3rem;
+  animation: kedip 0.6s ease infinite alternate;
+}
+
+.modal-kotak h2 {
+  margin: 10px 0 6px;
+}
+
+.modal-kotak p {
+  color: var(--teks-redup);
+  margin-bottom: 18px;
+}
+
+.modal-kotak .btn {
+  width: 100%;
+}
+
+/* ---------- Responsive kecil ---------- */
+@media (min-width: 640px) {
+  main {
+    padding: 20px;
+  }
+  .app-header {
+    padding-top: 26px;
+  }
+}
+
+@media (max-width: 380px) {
+  .tombol-container button {
+    min-width: 80px;
+    font-size: 0.85rem;
+    padding: 12px 8px;
+  }
+  .kartu {
+    padding: 16px;
+    border-radius: 20px;
+  }
+}
